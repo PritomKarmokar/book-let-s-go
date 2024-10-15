@@ -12,9 +12,9 @@ import (
 )
 
 type snippetCreateForm struct {
-	Title   string
-	Content string
-	Expires int
+	Title   string `form:"title"`
+	Content string `form:"content"`
+	Expires int    `form:"expires"`
 	// FieldErrors map[string]string
 	validator.Validator `form:"-"`
 }
