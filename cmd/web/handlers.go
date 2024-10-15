@@ -91,17 +91,17 @@ func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request
 	fieldErrors := make(map[string]string)
 
 	if strings.TrimSpace(form.Title) == "" {
-		fieldErrors["title"] = "This field cannot be blank"
+		form.FieldErrors["title"] = "This field cannot be blank"
 	} else if utf8.RuneCountInString(form.Title) > 100 {
-		fieldErrors["title"] = "This field cannot be more than 100 characters long"
+		form.FieldErrors["title"] = "This field cannot be more than 100 characters long"
 	}
 
 	if strings.TrimSpace(form.Content) == "" {
-		fieldErrors["content"] = "This field cannot be blank"
+		form.FieldErrors["content"] = "This field cannot be blank"
 	}
 
 	if form.Expires != 1 && form.Expires != 7 && form.Expires != 365 {
-		fieldErrors["expires"] = "This field must equal 1, 7 or 365"
+		form.FieldErrors["expires"] = "This field must equal 1, 7 or 365"
 	}
 
 	if len(form.FieldErrors) > 0 {
