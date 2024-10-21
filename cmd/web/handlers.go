@@ -21,7 +21,7 @@ type snippetCreateForm struct {
 
 type userSignupForm struct {
 	Name                string `form:"name"`
-	Email               string `from:"email"`
+	Email               string `form:"email"`
 	Password            string `form:"password"`
 	validator.Validator `form:"-"`
 }
