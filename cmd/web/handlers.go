@@ -204,7 +204,7 @@ func (app *application) userLoginPost(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, err)
 		return
 	}
-	app.sessionManager.Put(r.Context(), "authenticateUserID", id)
+	app.sessionManager.Put(r.Context(), "authenticatedUserID", id)
 	http.Redirect(w, r, "/snippet/create", http.StatusSeeOther)
 }
 
