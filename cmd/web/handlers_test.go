@@ -31,6 +31,8 @@ func TestPing(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
 	bytes.TrimSpace(body)
+
 	assert.Equal(t, string(body), "OK")
 }
