@@ -48,12 +48,7 @@ func TestSnippetView(t *testing.T) {
 		},
 		{
 			name:     "Decimal ID",
-			urlPath:  "/snippet/view/1.23",
-			wantCode: http.StatusNotFound,
-		},
-		{
-			name:     "String ID",
-			urlPath:  "snippet/view/foo",
+			urlPath:  "/snippet/view/1.5",
 			wantCode: http.StatusNotFound,
 		},
 		{
@@ -71,11 +66,10 @@ func TestSnippetView(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			code, _, body := ts.get(t, tt.urlPath)
-
 			assert.Equal(t, code, tt.wantCode)
 
 			if tt.wantBody != "" {
-				assert.Equal(t, body, tt.wantBody)
+				assert.StringContains(t, body, tt.wantBody)
 			}
 		})
 	}

@@ -31,6 +31,9 @@ func TestSecureHeaders(t *testing.T) {
 	expectedValue = "origin-when-cross-origin"
 	assert.Equal(t, rs.Header.Get("Referrer-Policy"), expectedValue)
 
+	expectedValue = "nonsniff"
+	assert.Equal(t, rs.Header.Get("X-Content-Type-Options"), expectedValue)
+
 	expectedValue = "deny"
 	assert.Equal(t, rs.Header.Get("X-Frame-Options"), expectedValue)
 
@@ -39,7 +42,6 @@ func TestSecureHeaders(t *testing.T) {
 
 	assert.Equal(t, rs.StatusCode, http.StatusOK)
 	defer rs.Body.Close()
-
 	body, err := io.ReadAll(rs.Body)
 	if err != nil {
 		t.Fatal(err)
